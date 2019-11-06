@@ -1,10 +1,27 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 import MenuItem from "../menu-item/menu-item.component";
 import "./directory.style.scss";
 
 class Directory extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    props.history.listen(location => {
+      //在这里监听location对象
+      console.log(location.pathname); //切换路由的时候输出"/one/users"和"/one/companies"
+      switch (
+        location.pathname //根据路径不同切换不同的浏览器title
+      ) {
+        case "/":
+          document.title = "网站首页";
+          break;
+        case "/shop/hats":
+          document.title = "帽子列表";
+          break;
+        default:
+          break;
+      }
+    });
     this.state = {
       sections: [
         {
@@ -46,12 +63,12 @@ class Directory extends Component {
   render() {
     return (
       <div className="directory-menu">
-        {this.state.sections.map(({ title, imageUrl, id, size }) => (
-          <MenuItem key={id} title={title} imageUrl={imageUrl} size={size} />
+        {this.state.sections.map(({ id, ...restProps }) => (
+          <MenuItem key={id} {...restProps} />
         ))}
       </div>
     );
   }
 }
 
-export default Directory;
+export default withRouter(Directory);

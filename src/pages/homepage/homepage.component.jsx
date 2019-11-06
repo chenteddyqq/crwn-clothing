@@ -1,11 +1,11 @@
 import React from "react";
-import Directory from "../../component/directory/directory.component"; 
+import Directory from "../../component/directory/directory.component";
 import "./homepage.style.scss";
 
-const HomePage = () => {
+const HomePage = props => {
   return (
     <div className="homepage">
-      <Directory/>
+      <Directory />
     </div>
   );
 };
