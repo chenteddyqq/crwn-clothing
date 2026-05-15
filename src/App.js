@@ -5,7 +5,7 @@ import "./App.css";
 function App() {
   return (
     <div>
-      <HomePage></HomePage>
+      <HomePage> 你好的哈，我是首页</HomePage>
     </div>
   );
 }
